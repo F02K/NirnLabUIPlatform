@@ -19,15 +19,15 @@ NirnLabUIPlatform. CyrodiilMP is the first local consumer, but host detection,
 runtime naming, and API surface should describe the game/runtime host rather
 than the CyrodiilMP mod.
 
-CyrodiilMP game/runtime code should talk to
-`native/CyrodiilMP.GameHost/src/UiRuntime.*`; this vendor fork should sit behind
-that boundary as the Chromium backend.
+CyrodiilMP game/runtime code should talk to an owned native UI boundary in the
+launcher/bootstrap path; this vendor fork should sit behind that boundary as the
+Chromium backend.
 
 ## Expected Porting Work
 
 - Remove or isolate SKSE and CommonLibSSE entry points.
-- Replace Skyrim native-menu assumptions with UE5/UE4SS or standalone hook
-  equivalents.
+- Replace Skyrim native-menu assumptions with Oblivion Remastered standalone
+  hook equivalents.
 - Keep the reusable CEF pieces: browser lifetime, subprocess management,
   JavaScript callbacks, native-to-JS events, and CEF resource packaging.
 - Replace Skyrim key-code and cursor handling with Oblivion Remastered input focus
