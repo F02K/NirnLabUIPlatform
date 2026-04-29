@@ -2,10 +2,14 @@
 
 This fork is the Oblivion Remastered port of NirnLabUIPlatform.
 
-Upstream started as a Skyrim/SKSE UI platform built around CEF (Chromium
-Embedded Framework). For this fork, Oblivion Remastered is the only supported
-runtime target. Skyrim, SKSE, CommonLibSSE, and Address Library compatibility is
-not a goal for new work.
+Original project credit goes to the NirnLabUIPlatform author and upstream
+maintainer at `kkEngine/NirnLabUIPlatform`. This fork keeps that MIT-licensed
+work as its base and exists only to maintain Oblivion Remastered compatibility.
+
+Upstream supports Skyrim/SKSE and was built around CEF (Chromium Embedded
+Framework). This fork does not support Skyrim as the original code does:
+Oblivion Remastered is the only supported runtime target. Skyrim, SKSE,
+CommonLibSSE, and Address Library compatibility is not a goal for new work.
 
 ## Direction
 
@@ -97,3 +101,6 @@ Temporary legacy dependencies:
 ## License
 
 MIT. Preserve upstream credit and license text when carrying code forward.
+Original NirnLabUIPlatform code is credited to the upstream author/maintainer at
+`kkEngine/NirnLabUIPlatform`; Oblivion Remastered compatibility changes are
+maintained in this fork.

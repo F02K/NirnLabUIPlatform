@@ -6,6 +6,11 @@ This directory vendors the MIT-licensed upstream source from:
 https://github.com/kkEngine/NirnLabUIPlatform
 ```
 
+Credit for the original NirnLabUIPlatform project belongs to its upstream
+author and maintainer at `kkEngine/NirnLabUIPlatform`. This fork is maintained
+only for Oblivion Remastered compatibility and does not support Skyrim in the
+same way the original project does.
+
 Fork point:
 
 ```text
