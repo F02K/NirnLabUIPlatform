@@ -1,4 +1,4 @@
-# NirnLabUIPlatform
+# NirnLabUIPlatformOR
 
 This fork is the Oblivion Remastered port of NirnLabUIPlatform.
 
