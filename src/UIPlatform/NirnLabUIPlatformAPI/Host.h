@@ -7,8 +7,7 @@ namespace NL::UI
     enum class HostRuntime : std::uint32_t
     {
         Unknown = 0,
-        SkyrimSKSE = 1,
-        OblivionRemastered = 2,
+        OblivionRemastered = 1,
     };
 
     struct HostInfo
@@ -22,7 +21,6 @@ namespace NL::UI
 
     inline constexpr HostInfo GetCompileTimeHostInfo()
     {
-#if defined(NL_UI_HOST_OBLIVION_REMASTERED)
         return {
             sizeof(HostInfo),
             HostRuntime::OblivionRemastered,
@@ -30,22 +28,5 @@ namespace NL::UI
             "Oblivion Remastered",
             "Oblivion Remastered"
         };
-#elif defined(NL_UI_HOST_SKYRIM_SKSE)
-        return {
-            sizeof(HostInfo),
-            HostRuntime::SkyrimSKSE,
-            "SkyrimSKSE",
-            "Skyrim Special Edition",
-            "SKSE"
-        };
-#else
-        return {
-            sizeof(HostInfo),
-            HostRuntime::SkyrimSKSE,
-            "SkyrimSKSE",
-            "Skyrim Special Edition",
-            "SKSE"
-        };
-#endif
     }
 }

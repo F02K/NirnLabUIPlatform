@@ -1,6 +1,6 @@
 #pragma once
 
-#define JS_EXECUTE_SCRIPT_URL "Skyrim"
+#define JS_EXECUTE_SCRIPT_URL "OblivionRemastered"
 
 #include "JSTypes.h"
 

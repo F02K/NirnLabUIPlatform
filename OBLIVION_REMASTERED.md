@@ -14,10 +14,13 @@ main, shallow clone taken for CyrodiilMP integration work on 2026-04-29
 
 ## Integration Goal
 
-This fork should become a general Oblivion Remastered host implementation for
+This fork is the general Oblivion Remastered host implementation for
 NirnLabUIPlatform. CyrodiilMP is the first local consumer, but host detection,
-runtime naming, and API surface should describe the game/runtime host rather
-than the CyrodiilMP mod.
+runtime naming, and API surface describe the game/runtime host rather than the
+CyrodiilMP mod.
+
+Skyrim, SKSE, CommonLibSSE, and Address Library compatibility is no longer a
+goal for this fork. Remaining upstream Skyrim code is porting scaffolding only.
 
 CyrodiilMP game/runtime code should talk to an owned native UI boundary in the
 launcher/bootstrap path; this vendor fork should sit behind that boundary as the
@@ -25,13 +28,13 @@ Chromium backend.
 
 ## Expected Porting Work
 
-- Remove or isolate SKSE and CommonLibSSE entry points.
+- Remove SKSE and CommonLibSSE entry points.
 - Replace Skyrim native-menu assumptions with Oblivion Remastered standalone
   hook equivalents.
 - Keep the reusable CEF pieces: browser lifetime, subprocess management,
   JavaScript callbacks, native-to-JS events, and CEF resource packaging.
-- Replace Skyrim key-code and cursor handling with Oblivion Remastered input focus
-  routing.
+- Replace Skyrim key-code and cursor handling with Oblivion Remastered input
+  focus routing.
 - Rename runtime output paths from `Data/NirnLabUIPlatform` to an Oblivion
   Remastered-compatible path under `Binaries/Win64`.
 
@@ -46,7 +49,7 @@ Likely reusable with minimal game-specific work:
 - `src/UIPlatform/Providers`
 - `src/UIPlatform/Services/CEFService.*`
 
-Skyrim/SKSE-specific and expected to need replacement or adapters:
+Skyrim/SKSE-specific and expected to be deleted or replaced:
 
 - `src/UIPlatform/main.cpp`
 - `src/UIPlugin`
@@ -71,8 +74,8 @@ swapchain path, or rendering through a UE/UE4SS surface.
 - `SendEvent` -> `IBrowser::ExecEventFunction`
 - UI command registration -> `IBrowser::AddFunctionCallback`
 
-Keep changes small and documented so we can still compare this fork with
-upstream when useful.
+Keep changes documented so we can still compare this fork with upstream when
+useful, but do not preserve Skyrim behavior as a compatibility requirement.
 
 ## Host Detection Contract
 
@@ -85,13 +88,12 @@ Consumers can detect which runtime provides the UI platform by either:
 - dispatching `APIMessageType::RequestHostInfo` and reading
   `ResponseHostInfoMessage::hostInfo`
 
-Known host values:
+Known host value:
 
-- `NL::UI::HostRuntime::SkyrimSKSE`
 - `NL::UI::HostRuntime::OblivionRemastered`
 
-The upstream Skyrim build defines `NL_UI_HOST_SKYRIM_SKSE`. An Oblivion
-Remastered-backed build should define `NL_UI_HOST_OBLIVION_REMASTERED`.
+This fork defines `NL_UI_HOST_OBLIVION_REMASTERED` for the UI platform target.
+`Host.h` also defaults to Oblivion Remastered when consumed directly.
 
 Example:
 
@@ -100,9 +102,5 @@ auto host = NL::UI::DllLoader::GetUIPlatformHostInfo();
 if (host.runtime == NL::UI::HostRuntime::OblivionRemastered)
 {
     // Use Oblivion Remastered-specific setup.
-}
-else if (host.runtime == NL::UI::HostRuntime::SkyrimSKSE)
-{
-    // Use Skyrim/SKSE-specific setup.
 }
 ```
