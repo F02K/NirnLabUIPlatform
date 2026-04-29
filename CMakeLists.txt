@@ -75,11 +75,13 @@ if (NOT DEFINED OUTPUT_PATH)
     set(OUTPUT_PATH ${CMAKE_BINARY_DIR}/dist/$<CONFIG>)
 endif()
 
-set(OBLIVION_PLUGIN_REL_PATH "OblivionRemastered/Binaries/Win64/CyrodiilMP/NirnLabUIPlatform")
+if(NOT DEFINED OBLIVION_PLUGIN_REL_PATH)
+    set(OBLIVION_PLUGIN_REL_PATH "OblivionRemastered/Binaries/Win64/CyrodiilMP/NirnLabUIPlatformOR")
+endif()
 set(OBLIVION_PLUGIN_PATH ${OUTPUT_PATH}/${OBLIVION_PLUGIN_REL_PATH})
 
 if(NOT DEFINED NL_UI_REL_PATH)
-    set(NL_UI_REL_PATH "OblivionRemastered/Binaries/Win64/CyrodiilMP/NirnLabUIPlatform")
+    set(NL_UI_REL_PATH "OblivionRemastered/Binaries/Win64/CyrodiilMP/NirnLabUIPlatformOR")
 endif()
 set(NL_UI_PATH ${OUTPUT_PATH}/${NL_UI_REL_PATH})
 
