@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
 
-option(BUILD_AS_SHARED "Build as dll skse plugin else build as static lib" ON)
+option(BUILD_AS_SHARED "Build as dll host plugin else build as static lib" ON)
 
 # Version
 set(LIB_MAJOR_VERSION 3)
@@ -75,11 +75,11 @@ if (NOT DEFINED OUTPUT_PATH)
     set(OUTPUT_PATH ${CMAKE_BINARY_DIR}/dist/$<CONFIG>)
 endif()
 
-set(SKSE_PLUGIN_REL_PATH "Data/SKSE/Plugins")
-set(SKSE_PLUGIN_PATH ${OUTPUT_PATH}/${SKSE_PLUGIN_REL_PATH})
+set(OBLIVION_PLUGIN_REL_PATH "OblivionRemastered/Binaries/Win64/CyrodiilMP/NirnLabUIPlatform")
+set(OBLIVION_PLUGIN_PATH ${OUTPUT_PATH}/${OBLIVION_PLUGIN_REL_PATH})
 
 if(NOT DEFINED NL_UI_REL_PATH)
-    set(NL_UI_REL_PATH "Data/NirnLabUIPlatform")
+    set(NL_UI_REL_PATH "OblivionRemastered/Binaries/Win64/CyrodiilMP/NirnLabUIPlatform")
 endif()
 set(NL_UI_PATH ${OUTPUT_PATH}/${NL_UI_REL_PATH})
 
@@ -253,7 +253,7 @@ target_compile_definitions(
     PRIVATE
         NL_UI_REL_PATH="${NL_UI_REL_PATH}"
         NL_UI_SUBPROC_NAME="${CEFSubprocessProjectName}.exe"
-        NL_UI_HOST_SKYRIM_SKSE
+        NL_UI_HOST_OBLIVION_REMASTERED
 )
 
 # ============================ UIPlugin ============================
@@ -282,12 +282,12 @@ if(BUILD_AS_SHARED)
     set_target_properties(
         ${UIPluginProjectName}
         PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY_DEBUG ${SKSE_PLUGIN_PATH}
-            RUNTIME_OUTPUT_DIRECTORY_RELEASE ${SKSE_PLUGIN_PATH}
-            LIBRARY_OUTPUT_DIRECTORY_DEBUG ${SKSE_PLUGIN_PATH}
-            LIBRARY_OUTPUT_DIRECTORY_RELEASE ${SKSE_PLUGIN_PATH}
-            #ARCHIVE_OUTPUT_DIRECTORY ${SKSE_PLUGIN_PATH}/archive
-            #PDB_OUTPUT_DIRECTORY ${SKSE_PLUGIN_PATH}
+            RUNTIME_OUTPUT_DIRECTORY_DEBUG ${OBLIVION_PLUGIN_PATH}
+            RUNTIME_OUTPUT_DIRECTORY_RELEASE ${OBLIVION_PLUGIN_PATH}
+            LIBRARY_OUTPUT_DIRECTORY_DEBUG ${OBLIVION_PLUGIN_PATH}
+            LIBRARY_OUTPUT_DIRECTORY_RELEASE ${OBLIVION_PLUGIN_PATH}
+            #ARCHIVE_OUTPUT_DIRECTORY ${OBLIVION_PLUGIN_PATH}/archive
+            #PDB_OUTPUT_DIRECTORY ${OBLIVION_PLUGIN_PATH}
     )
 
     target_include_directories(
@@ -337,12 +337,12 @@ if(BUILD_AS_SHARED)
     set_target_properties(
         ${UIPlatformTestName}
         PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY_DEBUG ${SKSE_PLUGIN_PATH}
-            RUNTIME_OUTPUT_DIRECTORY_RELEASE ${SKSE_PLUGIN_PATH}
-            LIBRARY_OUTPUT_DIRECTORY_DEBUG ${SKSE_PLUGIN_PATH}
-            LIBRARY_OUTPUT_DIRECTORY_RELEASE ${SKSE_PLUGIN_PATH}
-            #ARCHIVE_OUTPUT_DIRECTORY ${SKSE_PLUGIN_PATH}/archive
-            #PDB_OUTPUT_DIRECTORY ${SKSE_PLUGIN_PATH}
+            RUNTIME_OUTPUT_DIRECTORY_DEBUG ${OBLIVION_PLUGIN_PATH}
+            RUNTIME_OUTPUT_DIRECTORY_RELEASE ${OBLIVION_PLUGIN_PATH}
+            LIBRARY_OUTPUT_DIRECTORY_DEBUG ${OBLIVION_PLUGIN_PATH}
+            LIBRARY_OUTPUT_DIRECTORY_RELEASE ${OBLIVION_PLUGIN_PATH}
+            #ARCHIVE_OUTPUT_DIRECTORY ${OBLIVION_PLUGIN_PATH}/archive
+            #PDB_OUTPUT_DIRECTORY ${OBLIVION_PLUGIN_PATH}
     )
 
     target_include_directories(
