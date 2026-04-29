@@ -253,6 +253,7 @@ target_compile_definitions(
     PRIVATE
         NL_UI_REL_PATH="${NL_UI_REL_PATH}"
         NL_UI_SUBPROC_NAME="${CEFSubprocessProjectName}.exe"
+        NL_UI_HOST_SKYRIM_SKSE
 )
 
 # ============================ UIPlugin ============================
