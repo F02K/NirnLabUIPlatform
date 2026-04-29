@@ -16,7 +16,7 @@ namespace NL::UI
         HostRuntime runtime = HostRuntime::Unknown;
         const char* runtimeName = "Unknown";
         const char* gameName = "";
-        const char* integrationName = "NirnLabUIPlatform";
+        const char* integrationName = "NirnLabUIPlatformOR";
     };
 
     inline constexpr HostInfo GetCompileTimeHostInfo()
@@ -26,7 +26,7 @@ namespace NL::UI
             HostRuntime::OblivionRemastered,
             "OblivionRemastered",
             "Oblivion Remastered",
-            "Oblivion Remastered"
+            "NirnLabUIPlatformOR"
         };
     }
 }

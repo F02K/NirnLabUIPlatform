@@ -28,7 +28,7 @@ set(CMAKE_CXX_FLAGS "/EHsc /MP /W4")
 add_compile_definitions(WINDOWS)
 
 project(
-    NirnLabUIPlatform
+    NirnLabUIPlatformOR
     LANGUAGES CXX
     VERSION ${LIB_MAJOR_VERSION}.${LIB_MINOR_VERSION}
 )
@@ -184,7 +184,7 @@ target_compile_definitions(
 add_dependencies(${CEFSubprocessProjectName} CefLibraryFiles)
 
 # ============================ UIPlatform ============================
-set(UIPlatformProjectName "NirnLabUIPlatform")
+set(UIPlatformProjectName "NirnLabUIPlatformOR")
 
 file(
     COPY

@@ -6,7 +6,7 @@ namespace NL::UI::LibVersion
 {
     inline constexpr std::uint32_t MAJOR = 3;
     inline constexpr std::uint32_t MINOR = 3;
-    inline constexpr auto PROJECT_NAME = "NirnLabUIPlatform";
+    inline constexpr auto PROJECT_NAME = "NirnLabUIPlatformOR";
 
     inline constexpr auto MAJOR_MULT = 100000;
     inline constexpr auto AS_STRING = "3.3";
