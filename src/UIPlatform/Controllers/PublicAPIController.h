@@ -48,6 +48,7 @@ namespace NL::Controllers
     protected:
         NL::UI::ResponseVersionMessage m_rvMessage{NL::UI::LibVersion::AS_INT, NL::UI::APIVersion::AS_INT};
         NL::UI::ResponseAPIMessage m_rAPIMessage{this};
+        NL::UI::ResponseHostInfoMessage m_hostInfoMessage{};
 
         std::atomic<BrowserRefHandle> m_currentRefHandle{1};
 
@@ -63,6 +64,7 @@ namespace NL::Controllers
     public:
         NL::UI::ResponseVersionMessage* GetVersionMessage();
         NL::UI::ResponseAPIMessage* GetAPIMessage();
+        NL::UI::ResponseHostInfoMessage* GetHostInfoMessage();
 
         void Init();
         bool InitIfNotPlatformService(const NL::UI::Settings* a_settings);

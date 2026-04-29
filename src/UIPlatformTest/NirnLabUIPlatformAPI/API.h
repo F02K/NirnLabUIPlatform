@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Version.h"
+#include "Host.h"
 #include "JSTypes.h"
 #include "IBrowser.h"
 #include "Settings.h"
@@ -89,6 +90,16 @@ namespace NL::UI
         /// Response with API info. See "ResponseAPIMessage" struct.
         /// </summary>
         ResponseAPI,
+
+        /// <summary>
+        /// Request runtime host info. No data is needed.
+        /// </summary>
+        RequestHostInfo,
+
+        /// <summary>
+        /// Response with runtime host info. See "ResponseHostInfoMessage".
+        /// </summary>
+        ResponseHostInfo,
     };
 
     struct RequestAPIMessage
@@ -107,10 +118,16 @@ namespace NL::UI
         /// NirnLabUIPlatform API version
         /// </summary>
         std::uint32_t apiVersion = NL::UI::APIVersion::AS_INT;
+
     };
 
     struct ResponseAPIMessage
     {
         IUIPlatformAPI* API = nullptr;
+    };
+
+    struct ResponseHostInfoMessage
+    {
+        NL::UI::HostInfo hostInfo = NL::UI::GetCompileTimeHostInfo();
     };
 }

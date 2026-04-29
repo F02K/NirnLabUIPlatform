@@ -106,6 +106,11 @@ extern "C"
         return *NL::Controllers::PublicAPIController::GetSingleton().GetVersionMessage();
     }
 
+    DLLEXPORT NL::UI::HostInfo GetUIPlatformHostInfo()
+    {
+        return NL::UI::GetCompileTimeHostInfo();
+    }
+
     DLLEXPORT bool CreateOrGetUIPlatformAPI(NL::UI::IUIPlatformAPI** a_outApi, NL::UI::Settings* a_settings)
     {
         auto& controller = NL::Controllers::PublicAPIController::GetSingleton();

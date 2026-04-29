@@ -43,6 +43,17 @@ namespace NL::UI::DllLoader
         return funcPtr();
     }
 
+    inline HostInfo GetUIPlatformHostInfo()
+    {
+        const auto funcPtr = reinterpret_cast<decltype(&GetUIPlatformHostInfo)>(GetProcAddress(GetNirnLabUILib(), NameOf(GetUIPlatformHostInfo)));
+        if (funcPtr == nullptr)
+        {
+            return {};
+        }
+
+        return funcPtr();
+    }
+
     inline bool CreateOrGetUIPlatformAPI(IUIPlatformAPI** a_outApi, NL::UI::Settings* a_settings)
     {
         const auto funcPtr = reinterpret_cast<decltype(&CreateOrGetUIPlatformAPI)>(GetProcAddress(GetNirnLabUILib(), NameOf(CreateOrGetUIPlatformAPI)));

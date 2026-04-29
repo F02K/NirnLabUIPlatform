@@ -31,6 +31,11 @@ namespace NL::Controllers
         return &m_rAPIMessage;
     }
 
+    NL::UI::ResponseHostInfoMessage* PublicAPIController::GetHostInfoMessage()
+    {
+        return &m_hostInfoMessage;
+    }
+
     void PublicAPIController::Init()
     {
         m_onShutdownConnection = NL::Hooks::ShutdownHook::OnShutdown.connect([&]() {
@@ -57,6 +62,13 @@ namespace NL::Controllers
                 SKSE::GetMessagingInterface()->Dispatch(NL::UI::APIMessageType::ResponseVersion,
                                                         static_cast<void*>(controller.GetVersionMessage()),
                                                         sizeof(*controller.GetVersionMessage()),
+                                                        a_msg->sender);
+                break;
+            case NL::UI::APIMessageType::RequestHostInfo:
+                spdlog::info("{}: Request host info from \"{}\"", NameOf(PublicAPIController), a_msg->sender);
+                SKSE::GetMessagingInterface()->Dispatch(NL::UI::APIMessageType::ResponseHostInfo,
+                                                        static_cast<void*>(controller.GetHostInfoMessage()),
+                                                        sizeof(*controller.GetHostInfoMessage()),
                                                         a_msg->sender);
                 break;
             case NL::UI::APIMessageType::RequestAPI: {
