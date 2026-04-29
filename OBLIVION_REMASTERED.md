@@ -1,6 +1,10 @@
-# NirnLabUIPlatform Oblivion Remastered Patch
+# NirnLabUIPlatformOR
 
-This directory vendors the MIT-licensed upstream source from:
+This repository is the Oblivion Remastered-only fork of NirnLabUIPlatform.
+`OR` stands for Oblivion Remastered. The public API and library names still use
+`NirnLabUIPlatform` while the port is in progress.
+
+This fork vendors the MIT-licensed upstream source from:
 
 ```text
 https://github.com/kkEngine/NirnLabUIPlatform

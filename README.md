@@ -1,6 +1,8 @@
-# NirnLabUIPlatform
+# NirnLabUIPlatformOR
 
-This fork is the Oblivion Remastered port of NirnLabUIPlatform.
+This repository is the Oblivion Remastered-only fork of NirnLabUIPlatform.
+`OR` stands for Oblivion Remastered. The public API and library names still use
+`NirnLabUIPlatform` while the port is in progress.
 
 Original project credit goes to the NirnLabUIPlatform author and upstream
 maintainer at `kkEngine/NirnLabUIPlatform`. This fork keeps that MIT-licensed
