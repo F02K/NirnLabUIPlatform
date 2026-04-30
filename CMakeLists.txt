@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 
 option(BUILD_AS_SHARED "Build as dll host plugin else build as static lib" ON)
+option(NL_UI_OBLIVION_SAFE_RUNTIME "Build UIPlatform runtime without Skyrim/SKSE/CommonLibSSE dependencies" ON)
 
 # Version
 set(LIB_MAJOR_VERSION 3)
@@ -200,8 +201,19 @@ file(
         "src/UIPlatform/**.hpp"
         "src/UIPlatform/**.cpp"
 )
+if(NL_UI_OBLIVION_SAFE_RUNTIME)
+    set(UIPlatformProjectName_src
+        "src/OblivionRuntime/main.cpp"
+        "src/UIPlatform/NirnLabUIPlatformAPI/API.h"
+        "src/UIPlatform/NirnLabUIPlatformAPI/Host.h"
+        "src/UIPlatform/NirnLabUIPlatformAPI/IBrowser.h"
+        "src/UIPlatform/NirnLabUIPlatformAPI/JSTypes.h"
+        "src/UIPlatform/NirnLabUIPlatformAPI/Settings.h"
+        "src/UIPlatform/NirnLabUIPlatformAPI/Version.h"
+    )
+endif()
 source_group(
-    TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/UIPlatform"
+    TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
     FILES ${UIPlatformProjectName_src}
 )
 list(APPEND UIPlatformProjectName_src ${proj_stuff})
@@ -233,22 +245,24 @@ target_include_directories(
 
 set_compile_options(${UIPlatformProjectName})
 
-target_precompile_headers(
-    ${UIPlatformProjectName}
-    PRIVATE
-        "src/UIPlatform/PCH.h"
-)
+if(NOT NL_UI_OBLIVION_SAFE_RUNTIME)
+    target_precompile_headers(
+        ${UIPlatformProjectName}
+        PRIVATE
+            "src/UIPlatform/PCH.h"
+    )
 
-target_link_libraries(
-    ${UIPlatformProjectName}
-    PUBLIC
-        CommonLibSSE::CommonLibSSE
-        "d3d11.lib"
-        "dxguid.lib"
-        Microsoft::DirectXTK
-        cef
-        nlohmann_json::nlohmann_json
-)
+    target_link_libraries(
+        ${UIPlatformProjectName}
+        PUBLIC
+            CommonLibSSE::CommonLibSSE
+            "d3d11.lib"
+            "dxguid.lib"
+            Microsoft::DirectXTK
+            cef
+            nlohmann_json::nlohmann_json
+    )
+endif()
 
 target_compile_definitions(
     ${UIPlatformProjectName}
@@ -259,7 +273,7 @@ target_compile_definitions(
 )
 
 # ============================ UIPlugin ============================
-if(BUILD_AS_SHARED)
+if(BUILD_AS_SHARED AND NOT NL_UI_OBLIVION_SAFE_RUNTIME)
     set(UIPluginProjectName "NirnLabUIPlugin")
 
     file(
@@ -315,7 +329,7 @@ if(BUILD_AS_SHARED)
 endif()
 
 # ============================ UIPlatformTest ============================
-if(BUILD_AS_SHARED)
+if(BUILD_AS_SHARED AND NOT NL_UI_OBLIVION_SAFE_RUNTIME)
     set(UIPlatformTestName "NirnLabUIPlatformTest")
 
     file(
